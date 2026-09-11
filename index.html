@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultrahuman Dual Suite — Dual-Vector Intelligence for Elite Athletics</title>
+  <meta name="description" content="The world's first unified physical intelligence system. Ring Nova for 24/7 physiological recovery meets Apex Vest for high-velocity match load." />
+
+  <!-- Google Fonts: Editorial Serif (Newsreader), Modern Sans (Inter), Technical Mono (Space Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Chart.js for Interactive Telemetry -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* ─── Octolane Inspired Design Tokens ─── */
+    :root {
+      --bg-canvas: #ffffff;
+      --bg-card: #f5f6f8;
+      --bg-card-alt: #eceef2;
+      --bg-card-hover: #e8ebf0;
+      --ink: #121417;
+      --ink-soft: #4a515c;
+      --ink-muted: #798291;
+      --ink-faint: #a6afbc;
+      --border-subtle: rgba(18, 20, 23, 0.08);
+      --border-strong: rgba(18, 20, 23, 0.16);
+      
+      /* Signature Octolane Athletic Accents */
+      --accent-orange: #f76b15;
+      --accent-orange-soft: #fff1e7;
+      --accent-teal: #00bfa5;
+      --accent-teal-soft: #e0fbf6;
+      --accent-blue: #2563eb;
+      
+      --font-editorial: 'Newsreader', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Space Mono', 'SF Mono', monospace;
+      
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      --shadow-island: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.03), 0 0 0 1px var(--border-subtle);
+      --shadow-hover: 0 4px 20px rgba(0,0,0,0.08), 0 0 0 1px rgba(18, 20, 23, 0.12);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Typography Classes */
+    .font-editorial { font-family: var(--font-editorial); }
+    .font-sans { font-family: var(--font-sans); }
+    .font-mono { font-family: var(--font-mono); }
+
+    /* Floating navigation */
+    .nav-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: all 0.2s ease;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Octolane Badge & Pills */
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--ink-soft);
+    }
+
+    .btn-pill-dark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 42px;
+      padding: 0 20px;
+      border-radius: var(--radius-full);
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-pill-dark:hover {
+      background: #252830;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+    }
+
+    .btn-pill-light {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 42px;
+      padding: 0 20px;
+      border-radius: var(--radius-full);
+      background: var(--bg-canvas);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border-strong);
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .btn-pill-light:hover {
+      background: var(--bg-card);
+      border-color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    /* Hero stage */
+    .hero-stage {
+      position: relative;
+      min-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+    }
+
+    .hero-title {
+      font-family: var(--font-editorial);
+      font-size: clamp(44px, 6.8vw, 84px);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      max-width: 900px;
+      margin: 24px auto 18px;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 1.8vw, 19px);
+      color: var(--ink-soft);
+      max-width: 680px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* Octolane Floating Monospace Telemetry Notes */
+    .telemetry-note {
+      position: absolute;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 2.1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-muted);
+      pointer-events: none;
+      display: none;
+    }
+    @media (min-width: 1024px) {
+      .telemetry-note { display: flex; flex-direction: column; }
+      .telemetry-top-right { top: 60px; right: 40px; text-align: right; }
+      .telemetry-bottom-left { bottom: 60px; left: 40px; text-align: left; }
+    }
+    .telemetry-live-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-orange);
+      margin-right: 6px;
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.8); }
+    }
+
+    /* Bento Grid */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .bento-card:hover {
+      border-color: var(--border-strong);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .col-12 { grid-column: span 12; }
+    .col-8  { grid-column: span 12; }
+    .col-6  { grid-column: span 12; }
+    .col-4  { grid-column: span 12; }
+    .col-3  { grid-column: span 12; }
+    @media (min-width: 768px) {
+      .col-8 { grid-column: span 8; }
+      .col-6 { grid-column: span 6; }
+      .col-4 { grid-column: span 4; }
+      .col-3 { grid-column: span 3; }
+    }
+
+    /* Icon chips like Octolane */
+    .icon-chip {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-full);
+      background: #ffffff;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-orange);
+      margin-bottom: 20px;
+    }
+
+    /* Manifesto section */
+    .manifesto-box {
+      max-width: 680px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--ink-soft);
+      padding: 60px 0;
+    }
+    .manifesto-box p { margin-bottom: 24px; }
+    .manifesto-lede {
+      font-size: 22px;
+      color: var(--ink);
+      font-family: var(--font-editorial);
+      line-height: 1.5;
+    }
+
+    /* Hardware showcase cards */
+    .product-stage {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+    }
+    .product-tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-orange);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .product-name {
+      font-family: var(--font-editorial);
+      font-size: 34px;
+      color: var(--ink);
+      margin-bottom: 12px;
+      line-height: 1.15;
+    }
+
+    /* Comparison Bar Chart (Octolane style) */
+    .comp-line {
+      display: grid;
+      grid-template-columns: 140px 1fr 60px;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .comp-line { grid-template-columns: 100px 1fr 50px; font-size: 11px; gap: 8px; }
+    }
+    .comp-bar-track {
+      height: 8px;
+      background: var(--bg-card-alt);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+    .comp-bar-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      background: var(--accent-orange);
+    }
+    .comp-bar-fill.muted { background: #cfd4dc; }
+
+    /* Interactive Telemetry Tabs */
+    .tab-btn {
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: #ffffff;
+      color: var(--ink);
+      border-color: var(--border-strong);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    /* Accordion for User Manual */
+    .accordion-item {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 20px 0;
+    }
+    .accordion-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .accordion-content {
+      display: none;
+      padding-top: 16px;
+      color: var(--ink-soft);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .accordion-item.open .accordion-content {
+      display: block;
+    }
+    .accordion-icon {
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    /* Pricing Card Featured */
+    .pricing-card-featured {
+      background: #ffffff;
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .featured-ribbon {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ink);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 16px;
+      border-radius: var(--radius-full);
+    }
+
+    /* Dot grid subtle background */
+    .bg-grid-subtle {
+      background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION HEADER (Octolane Style)
+  ═══════════════════════════════════════════════ -->
+  <header class="nav-header">
+    <div class="container" style="display:flex; align-items:center; justify-content:space-between; height:68px;">
+      
+      <!-- Brand Logo -->
+      <a href="#" style="display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);">
+        <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="44" stroke="#121417" stroke-width="8" stroke-dasharray="8 6"/>
+          <circle cx="50" cy="50" r="28" stroke="#f76b15" stroke-width="6"/>
+          <circle cx="50" cy="14" r="5" fill="#f76b15"/>
+        </svg>
+        <span style="font-family:var(--font-sans); font-weight:700; font-size:16px; letter-spacing:0.04em;">ULTRAHUMAN</span>
+        <span class="badge-pill" style="font-size:9px; padding:2px 8px; margin-left:2px;">DUAL SUITE</span>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav style="display:none; gap:28px;" class="desktop-nav">
+        <a href="#manifesto" style="color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500;">Manifesto</a>
+        <a href="#hardware" style="color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500;">Hardware Suite</a>
+        <a href="#telemetry" style="color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500;">Telemetry</a>
+        <a href="#features" style="color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500;">Performance</a>
+        <a href="#pricing" style="color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500;">Pricing</a>
+        <a href="#manual" style="color:var(--ink-soft); text-decoration:none; font-size:14px; font-weight:500;">Manual</a>
+      </nav>
+
+      <!-- CTA Buttons -->
+      <div style="display:flex; align-items:center; gap:10px;">
+        <a href="#telemetry" class="btn-pill-light" style="height:36px; font-size:13px; padding:0 14px;">Live Demo</a>
+        <a href="#pricing" class="btn-pill-dark" style="height:36px; font-size:13px; padding:0 16px;">Order Suite</a>
+      </div>
+    </div>
+  </header>
+
+  <style>
+    @media (min-width: 860px) { .desktop-nav { display: flex !important; } }
+  </style>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO SECTION (Octolane Signature Stage)
+  ═══════════════════════════════════════════════ -->
+  <section class="hero-stage bg-grid-subtle">
+    
+    <!-- Floating Telemetry Notes Top-Right (Octolane Live Run ticker) -->
+    <aside class="telemetry-note telemetry-top-right">
+      <span><span class="telemetry-live-dot"></span>// ultrahuman dual-vector · live run</span>
+      <span>sensor pod: 250 hz ecg active</span>
+      <span>gnss satellite lock: 14 locked</span>
+      <span>sprint speed: 33.8 km/h</span>
+      <span>player load: 842 au (first half)</span>
+      <span>nocturnal recovery: 94% calibrated</span>
+    </aside>
+
+    <!-- Floating Telemetry Notes Bottom-Left -->
+    <aside class="telemetry-note telemetry-bottom-left">
+      <span>// biological telemetry stream</span>
+      <span>resting hrv: 82 ms (+14% vs 30d)</span>
+      <span>deep sleep: 2h 18m</span>
+      <span>cardiac strain: nominal</span>
+      <span>dual-vector: synced</span>
+    </aside>
+
+    <div style="max-width:960px; margin:0 auto; position:relative; z-index:2;">
+      
+      <!-- Center Emblem -->
+      <div style="margin-bottom:16px;">
+        <span class="badge-pill">
+          <span style="color:var(--accent-orange);">●</span> The Pro Athlete Physical Intelligence System
+        </span>
+      </div>
+
+      <!-- Editorial Title -->
+      <h1 class="hero-title">
+        Dual-Vector Intelligence<br/>
+        <span style="font-style:italic; font-weight:300;">for human performance</span>
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="hero-subtitle">
+        Internal physiological recovery meets high-velocity match load. An aerospace titanium smart ring and an ECG-grade compression GPS vest working as a single unified system.
+      </p>
+
+      <!-- CTA Row -->
+      <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center;">
+        <a href="#pricing" class="btn-pill-dark" style="height:46px; padding:0 24px; font-size:15px;">
+          Order Pro Dual Suite — ₹22,999
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#telemetry" class="btn-pill-light" style="height:46px; padding:0 22px; font-size:15px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Explore Live Telemetry
+        </a>
+      </div>
+
+      <!-- Quick Proof Tags -->
+      <div style="margin-top:38px; display:flex; flex-wrap:wrap; justify-content:center; gap:20px; font-size:13px; color:var(--ink-muted);">
+        <span>✓ Zero monthly subscription</span>
+        <span>✓ 250Hz medical-grade ECG</span>
+        <span>✓ 10Hz dual-frequency GPS</span>
+        <span>✓ iOS & Android integration</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       THE MANIFESTO SECTION (Octolane Editorial Style)
+  ═══════════════════════════════════════════════ -->
+  <section id="manifesto" style="border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle); background:#ffffff;">
+    <div class="container">
+      <div class="manifesto-box">
+        <div style="text-align:center; margin-bottom:32px;">
+          <span class="badge-pill">The Engineering Philosophy</span>
+        </div>
+        <p class="manifesto-lede">
+          Throughout the history of sports science, athletes have been forced to accept a broken compromise.
+        </p>
+        <p>
+          You wear a sleek smart ring to bed to record resting heart rate, circadian rhythms, and nocturnal recovery. But the moment you lace up your boots for a high-contact football match, a 30km/h sprint session, or a heavy barbell snatch, the ring must come off — or its optical PPG sensors fail under heavy motion and sweat artifacts.
+        </p>
+        <p>
+          Conversely, professional GPS compression vests capture external match load, sprint volume, and collision impact G-forces on the pitch. But you cannot sleep in a compression vest. The data stops the second you step into the locker room.
+        </p>
+        <p>
+          <strong>Internal recovery was completely isolated from external load.</strong>
+        </p>
+        <p>
+          That is why we engineered the <strong>Ultrahuman Dual Suite</strong>: Two purpose-built devices communicating in real time through our unified on-device intelligence platform. The 90 minutes of extreme physical battle inform your next 24 hours of cellular restoration.
+        </p>
+        <p style="font-family:var(--font-editorial); font-size:24px; font-style:italic; color:var(--ink); text-align:center; margin-top:40px;">
+          "Master the Pitch. Own the Recovery."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       THE TWO-PIECE HARDWARE SHOWCASE
+  ═══════════════════════════════════════════════ -->
+  <section id="hardware" style="padding:90px 0; background:var(--bg-card);">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:680px; margin:0 auto 60px;">
+        <span class="badge-pill">The Dual Hardware Architecture</span>
+        <h2 class="font-editorial" style="font-size:clamp(32px, 4.5vw, 52px); color:var(--ink); margin-top:12px; line-height:1.1;">
+          Two pieces. One unified nervous system.
+        </h2>
+        <p style="color:var(--ink-soft); font-size:16px; margin-top:12px;">
+          Designed from first principles to capture physiological extremes where single devices fail.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        
+        <!-- Piece 1: Ring Nova -->
+        <div class="bento-card col-6" style="background:#ffffff; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <span class="product-tag">PIECE 01 · INTERNAL VECTOR</span>
+              <span class="badge-pill">24/7 Wear</span>
+            </div>
+            <h3 class="product-name">Ultrahuman Ring Nova</h3>
+            <p style="color:var(--ink-soft); font-size:15px; margin-bottom:24px;">
+              Aerospace Grade-5 titanium ring. Continuous nocturnal baseline tracking, body temperature fluctuations, sleep architecture, and autonomic balance.
+            </p>
+
+            <!-- Ring SVG Schematic -->
+            <div style="text-align:center; padding:30px 0;">
+              <svg width="180" height="180" viewBox="0 0 160 160" fill="none" style="margin:0 auto; filter:drop-shadow(0 8px 24px rgba(0,0,0,0.06));">
+                <circle cx="80" cy="80" r="70" stroke="#121417" stroke-width="14"/>
+                <circle cx="80" cy="80" r="54" stroke="rgba(247,107,21,0.25)" stroke-width="2" stroke-dasharray="6 4"/>
+                <circle cx="80" cy="16" r="5" fill="#f76b15"/>
+                <circle cx="138" cy="60" r="4" fill="#00bfa5"/>
+                <circle cx="138" cy="100" r="4" fill="#00bfa5"/>
+                <circle cx="80" cy="144" r="5" fill="#f76b15"/>
+                <circle cx="22" cy="80" r="4" fill="#00bfa5"/>
+              </svg>
+            </div>
+
+            <!-- Specs Grid -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:13px; border-top:1px solid var(--border-subtle); padding-top:18px;">
+              <div><span style="color:var(--ink-muted);">Weight:</span> <strong>3.5 grams</strong></div>
+              <div><span style="color:var(--ink-muted);">Battery:</span> <strong>7 days</strong></div>
+              <div><span style="color:var(--ink-muted);">Water:</span> <strong>100m (IP68)</strong></div>
+              <div><span style="color:var(--ink-muted);">Sensors:</span> <strong>PPG + 0.01°C Temp</strong></div>
+            </div>
+          </div>
+          <div style="margin-top:24px;">
+            <span class="badge-pill" style="background:#fef5ee; border-color:#fed7aa; color:var(--accent-orange);">
+              Role: Sleep Architecture & Nocturnal Recovery
+            </span>
+          </div>
+        </div>
+
+        <!-- Piece 2: Apex Vest -->
+        <div class="bento-card col-6" style="background:#ffffff; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+              <span class="product-tag" style="color:var(--accent-teal);">PIECE 02 · EXTERNAL VECTOR</span>
+              <span class="badge-pill">Match & Training</span>
+            </div>
+            <h3 class="product-name">Ultrahuman Apex Vest</h3>
+            <p style="color:var(--ink-soft); font-size:15px; margin-bottom:24px;">
+              Ergonomic compression athletic vest with medical-grade dry-contact ECG chest band and an ultra-light spine-mounted 10Hz GNSS GPS + 9-axis IMU pod.
+            </p>
+
+            <!-- Vest SVG Schematic -->
+            <div style="text-align:center; padding:30px 0;">
+              <svg width="180" height="180" viewBox="0 0 160 160" fill="none" style="margin:0 auto; filter:drop-shadow(0 8px 24px rgba(0,0,0,0.06));">
+                <!-- Sleeveless vest silhouette -->
+                <path d="M48 24 L62 24 C62 42 98 42 98 24 L112 24 L126 58 L114 62 L106 142 L54 142 L46 62 L34 58 Z" fill="#f5f6f8" stroke="#121417" stroke-width="2"/>
+                <!-- Chest band electrodes -->
+                <path d="M48 76 Q80 84 112 76" stroke="#00bfa5" stroke-width="4" stroke-linecap="round"/>
+                <!-- Spine pod container -->
+                <rect x="71" y="44" width="18" height="28" rx="4" fill="#121417"/>
+                <circle cx="80" cy="54" r="3" fill="#f76b15"/>
+                <text x="80" y="65" fill="#fff" font-size="6" text-anchor="middle" font-family="monospace">GPS</text>
+              </svg>
+            </div>
+
+            <!-- Specs Grid -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:13px; border-top:1px solid var(--border-subtle); padding-top:18px;">
+              <div><span style="color:var(--ink-muted);">Fabric:</span> <strong>Antimicrobial Spandex</strong></div>
+              <div><span style="color:var(--ink-muted);">ECG Rate:</span> <strong>250 Hz (Zero Lag)</strong></div>
+              <div><span style="color:var(--ink-muted);">GNSS:</span> <strong>10Hz Dual GPS</strong></div>
+              <div><span style="color:var(--ink-muted);">Pod Battery:</span> <strong>14h Active Match</strong></div>
+            </div>
+          </div>
+          <div style="margin-top:24px;">
+            <span class="badge-pill" style="background:#e6fcf8; border-color:#99f6e4; color:var(--accent-teal);">
+              Role: High-Speed Sprints, ECG & Collision Load
+            </span>
+          </div>
+        </div>
+
+        <!-- The Platform Bridge -->
+        <div class="bento-card col-12" style="background:#121417; color:#ffffff;">
+          <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:20px;">
+            <div>
+              <span class="badge-pill" style="background:rgba(255,255,255,0.1); color:#ffffff; border-color:rgba(255,255,255,0.2);">The Neural Bridge</span>
+              <h3 class="font-editorial" style="font-size:28px; margin-top:8px;">How the Two Pieces Communicate</h3>
+              <p style="color:#a6afbc; max-width:640px; font-size:15px; margin-top:6px;">
+                Bluetooth 5.3 creates a localized mesh between the Ring, the Vest Pod, and your phone. When match time starts, the vest handles real-time load telemetry. When match time ends, the ring automatically inherits the exertion profile and computes the optimal recovery curve.
+              </p>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-family:var(--font-mono); font-size:32px; color:var(--accent-orange); font-weight:700;">0 ms</div>
+              <div style="color:#a6afbc; font-size:13px;">Data Disconnect · Completely Synced</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       THE PROBLEM & BENTO GRID (Guideline 4 & 5)
+  ═══════════════════════════════════════════════ -->
+  <section id="features" style="padding:90px 0; background:#ffffff;">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:680px; margin:0 auto 60px;">
+        <span class="badge-pill">Clinical Precision</span>
+        <h2 class="font-editorial" style="font-size:clamp(32px, 4.5vw, 52px); color:var(--ink); margin-top:12px; line-height:1.1;">
+          Why standard wearables leave athletes stranded
+        </h2>
+        <p style="color:var(--ink-soft); font-size:16px; margin-top:12px;">
+          Most consumer fitness trackers are made for casual 10,000-step walkers, not high-intensity athletic competition.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        
+        <div class="bento-card col-4">
+          <div class="icon-chip">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </div>
+          <h4 style="font-size:18px; margin-bottom:8px; font-weight:600;">The Optical PPG Latency</h4>
+          <p style="color:var(--ink-soft); font-size:14px; line-height:1.6;">
+            Optical sensors on the wrist or finger rely on blood capillary refilling. When you sprint from 0 to 32 km/h in 3 seconds, optical heart rate lags by 8 to 15 seconds. Apex Vest's 250Hz dry ECG detects cardiac electrical impulse instantly.
+          </p>
+        </div>
+
+        <div class="bento-card col-4">
+          <div class="icon-chip" style="color:var(--accent-teal);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h4 style="font-size:18px; margin-bottom:8px; font-weight:600;">Contact Sports Rules</h4>
+          <p style="color:var(--ink-soft); font-size:14px; line-height:1.6;">
+            Referees in FIFA football, rugby, basketball, and combat sports ban watches and hard metal rings due to laceration and finger injury risks. The soft compression vest is fully FIFA and World Rugby approved for match play.
+          </p>
+        </div>
+
+        <div class="bento-card col-4">
+          <div class="icon-chip" style="color:var(--accent-blue);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+          </div>
+          <h4 style="font-size:18px; margin-bottom:8px; font-weight:600;">The $30,000 Team Paywall</h4>
+          <p style="color:var(--ink-soft); font-size:14px; line-height:1.6;">
+            Elite GPS tracking pods used by Manchester City or Real Madrid (Catapult, STATSports) require expensive B2B club software licensing. Ultrahuman democratizes elite sports science directly to individual athletes at consumer pricing.
+          </p>
+        </div>
+
+        <!-- Comparative Benchmarks (Octolane signature horizontal bar comparison) -->
+        <div class="bento-card col-12" style="background:#f8f9fa;">
+          <h4 class="font-editorial" style="font-size:24px; margin-bottom:20px;">Sprint Heart Rate Accuracy Benchmark</h4>
+          
+          <div class="comp-line">
+            <span style="font-weight:600;">Ultrahuman Apex Vest (ECG)</span>
+            <div class="comp-bar-track"><div class="comp-bar-fill" style="width:99.4%;"></div></div>
+            <span class="font-mono" style="font-weight:700; color:var(--accent-orange);">99.4%</span>
+          </div>
+
+          <div class="comp-line">
+            <span>Polar H10 Chest Strap</span>
+            <div class="comp-bar-track"><div class="comp-bar-fill muted" style="width:98.1%;"></div></div>
+            <span class="font-mono" style="color:var(--ink-muted);">98.1%</span>
+          </div>
+
+          <div class="comp-line">
+            <span>Apple Watch Ultra (Optical)</span>
+            <div class="comp-bar-track"><div class="comp-bar-fill muted" style="width:74.2%;"></div></div>
+            <span class="font-mono" style="color:var(--ink-muted);">74.2%</span>
+          </div>
+
+          <div class="comp-line">
+            <span>Standard Smart Ring (Optical)</span>
+            <div class="comp-bar-track"><div class="comp-bar-fill muted" style="width:61.0%;"></div></div>
+            <span class="font-mono" style="color:var(--ink-muted);">61.0%</span>
+          </div>
+          
+          <div style="font-size:12px; color:var(--ink-muted); margin-top:12px; font-family:var(--font-mono);">
+            *Tested against 12-lead clinical ECG during 10x 40-meter maximum velocity sprints.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       INTERACTIVE PRODUCT DEMO & TELEMETRY (Guideline 9)
+  ═══════════════════════════════════════════════ -->
+  <section id="telemetry" style="padding:90px 0; background:var(--bg-card); border-top:1px solid var(--border-subtle); border-bottom:1px solid var(--border-subtle);">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:680px; margin:0 auto 40px;">
+        <span class="badge-pill">Interactive Demonstration</span>
+        <h2 class="font-editorial" style="font-size:clamp(32px, 4.5vw, 50px); color:var(--ink); margin-top:12px; line-height:1.1;">
+          Simulate the Dual-Vector Experience
+        </h2>
+        <p style="color:var(--ink-soft); font-size:16px; margin-top:10px;">
+          Toggle between Match Mode (Apex Vest), Recovery Mode (Ring Nova), and the Unified Engine.
+        </p>
+
+        <!-- Mode Switcher Tabs -->
+        <div style="display:inline-flex; background:var(--bg-card-alt); padding:4px; border-radius:var(--radius-full); margin-top:24px; border:1px solid var(--border-subtle);">
+          <button class="tab-btn active" id="tab-match" onclick="switchTelemetry('match')">1. Match Mode (Vest)</button>
+          <button class="tab-btn" id="tab-recovery" onclick="switchTelemetry('recovery')">2. Nocturnal Recovery (Ring)</button>
+          <button class="tab-btn" id="tab-unified" onclick="switchTelemetry('unified')">3. Unified Readiness Score</button>
+        </div>
+      </div>
+
+      <!-- Telemetry Visualizer Card -->
+      <div class="bento-card col-12" style="background:#ffffff; padding:36px; border:1px solid var(--border-strong);">
+        
+        <!-- Telemetry Stats Bar -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(180px, 1fr)); gap:20px; border-bottom:1px solid var(--border-subtle); padding-bottom:24px; margin-bottom:24px;">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-muted);" id="stat-1-label">Peak Velocity</div>
+            <div style="font-family:var(--font-editorial); font-size:32px; font-weight:600; color:var(--ink);" id="stat-1-val">34.2 km/h</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-muted);" id="stat-2-label">ECG Heart Rate Peak</div>
+            <div style="font-family:var(--font-editorial); font-size:32px; font-weight:600; color:var(--accent-orange);" id="stat-2-val">186 BPM</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-muted);" id="stat-3-label">Player Workload</div>
+            <div style="font-family:var(--font-editorial); font-size:32px; font-weight:600; color:var(--ink);" id="stat-3-val">842 AU</div>
+          </div>
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-muted);" id="stat-4-label">System State</div>
+            <div style="font-family:var(--font-mono); font-size:18px; font-weight:700; color:var(--accent-teal); margin-top:6px;" id="stat-4-val">● LIVE STREAMING</div>
+          </div>
+        </div>
+
+        <!-- Chart Canvas -->
+        <div style="height:320px; width:100%; position:relative;">
+          <canvas id="telemetryChart"></canvas>
+        </div>
+
+        <!-- Explanation Footer -->
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border-subtle); font-size:14px; color:var(--ink-soft); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <span id="telemetry-desc">
+            Displaying 90-minute competitive football match telemetry recorded by the <strong>Apex Vest Pod</strong> at 250Hz ECG & 10Hz GNSS.
+          </span>
+          <span class="badge-pill" id="telemetry-badge">Sensor Pod Active</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       TARGET AUDIENCE (Guideline 3)
+  ═══════════════════════════════════════════════ -->
+  <section style="padding:90px 0; background:#ffffff;">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:680px; margin:0 auto 60px;">
+        <span class="badge-pill">Target Audience</span>
+        <h2 class="font-editorial" style="font-size:clamp(32px, 4.5vw, 50px); color:var(--ink); margin-top:12px; line-height:1.1;">
+          Engineered for every tier of high performance
+        </h2>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card col-3" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">⚽</div>
+          <h4 style="font-size:17px; font-weight:600; margin-bottom:6px;">Pitch & Field Sports</h4>
+          <p style="color:var(--ink-soft); font-size:13px;">Football, rugby, hockey, basketball. Zero match bans, full collision & sprint heatmaps.</p>
+        </div>
+        <div class="bento-card col-3" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">🏃</div>
+          <h4 style="font-size:17px; font-weight:600; margin-bottom:6px;">Endurance & Marathon</h4>
+          <p style="color:var(--ink-soft); font-size:13px;">Zero chafing, exact ECG cardiac drift analysis on 42km runs, combined with nocturnal sleep staging.</p>
+        </div>
+        <div class="bento-card col-3" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">🥊</div>
+          <h4 style="font-size:17px; font-weight:600; margin-bottom:6px;">Combat & Strength</h4>
+          <p style="color:var(--ink-soft); font-size:13px;">MMA, boxing, CrossFit, powerlifting. No ring interference on knurled barbells or boxing wraps.</p>
+        </div>
+        <div class="bento-card col-3" style="text-align:center;">
+          <div style="font-size:36px; margin-bottom:12px;">⚡</div>
+          <h4 style="font-size:17px; font-weight:600; margin-bottom:6px;">Biohackers & Execs</h4>
+          <p style="color:var(--ink-soft); font-size:13px;">High-tempo leaders balancing intense morning workouts with boardroom clarity and optimal circadian sleep.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       PRICING & DUAL SUITE (Guideline 7)
+  ═══════════════════════════════════════════════ -->
+  <section id="pricing" style="padding:90px 0; background:var(--bg-card); border-top:1px solid var(--border-subtle);">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:680px; margin:0 auto 60px;">
+        <span class="badge-pill">Honest Investment</span>
+        <h2 class="font-editorial" style="font-size:clamp(32px, 4.5vw, 52px); color:var(--ink); margin-top:12px; line-height:1.1;">
+          Transparent pricing. Never a monthly fee.
+        </h2>
+        <p style="color:var(--ink-soft); font-size:16px; margin-top:10px;">
+          Buy the hardware once. The entire physical intelligence platform is yours for life.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        
+        <!-- Option 1: Standalone Ring -->
+        <div class="bento-card col-4" style="background:#ffffff; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-muted);">Solo Option</div>
+            <h3 class="font-editorial" style="font-size:26px; margin-top:4px;">Ring Nova</h3>
+            <p style="color:var(--ink-soft); font-size:13px; margin:8px 0 20px;">24/7 internal biological & sleep tracker.</p>
+            <div style="font-family:var(--font-editorial); font-size:36px; font-weight:700; color:var(--ink);">₹17,999</div>
+            <div style="font-size:12px; color:var(--ink-muted); margin-bottom:24px;">$279 USD · One-time purchase</div>
+
+            <ul style="list-style:none; font-size:13px; color:var(--ink-soft); display:flex; flex-direction:column; gap:10px;">
+              <li>✓ Grade-5 Titanium Ring</li>
+              <li>✓ Wireless Fast Charging Dock</li>
+              <li>✓ 7-Ring Sizing Kit included</li>
+              <li>✓ Lifetime App Access (No Subs)</li>
+              <li>✗ GPS Sprint & Match Pod (Not included)</li>
+            </ul>
+          </div>
+          <button class="btn-pill-light" style="width:100%; margin-top:28px;">Select Ring Nova</button>
+        </div>
+
+        <!-- Option 2: The Pro Dual Suite (FEATURED) -->
+        <div class="bento-card col-4 pricing-card-featured" style="padding:36px 32px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="featured-ribbon">Most Popular · Save ₹3,000</div>
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--accent-orange); font-weight:700;">Complete Ecosystem</div>
+            <h3 class="font-editorial" style="font-size:28px; margin-top:4px;">Pro Dual Suite</h3>
+            <p style="color:var(--ink-soft); font-size:13px; margin:8px 0 20px;">Both devices synced into the unified platform.</p>
+            <div style="font-family:var(--font-editorial); font-size:42px; font-weight:700; color:var(--ink);">₹22,999</div>
+            <div style="font-size:12px; color:var(--ink-muted); margin-bottom:24px;">$349 USD · Bundle discount applied</div>
+
+            <ul style="list-style:none; font-size:13px; color:var(--ink); display:flex; flex-direction:column; gap:10px;">
+              <li><strong>✓ Ultrahuman Ring Nova (Titanium)</strong></li>
+              <li><strong>✓ Ultrahuman Apex Vest + 10Hz Pod</strong></li>
+              <li>✓ Wireless Desktop Dock + USB-C</li>
+              <li>✓ 7-Ring Sizing Kit included</li>
+              <li>✓ Unified Dual-Vector AI Engine</li>
+              <li>✓ Priority 24/7 Concierge Support</li>
+              <li>✓ 1-Year Full Replacement Warranty</li>
+            </ul>
+          </div>
+          <button class="btn-pill-dark" style="width:100%; margin-top:28px; height:46px;">Order Pro Dual Suite</button>
+        </div>
+
+        <!-- Option 3: Standalone Vest -->
+        <div class="bento-card col-4" style="background:#ffffff; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:11px; text-transform:uppercase; color:var(--ink-muted);">Solo Option</div>
+            <h3 class="font-editorial" style="font-size:26px; margin-top:4px;">Apex Vest</h3>
+            <p style="color:var(--ink-soft); font-size:13px; margin:8px 0 20px;">Match & sprint performance garment.</p>
+            <div style="font-family:var(--font-editorial); font-size:36px; font-weight:700; color:var(--ink);">₹7,999</div>
+            <div style="font-size:12px; color:var(--ink-muted); margin-bottom:24px;">$129 USD · One-time purchase</div>
+
+            <ul style="list-style:none; font-size:13px; color:var(--ink-soft); display:flex; flex-direction:column; gap:10px;">
+              <li>✓ Ergonomic Compression Vest (S/M/L/XL)</li>
+              <li>✓ 10Hz GNSS GPS + 9-Axis IMU Pod</li>
+              <li>✓ 250Hz Dry ECG Electrode Band</li>
+              <li>✓ Pod Magnetic Charging Cable</li>
+              <li>✗ Ring Nova (Not included)</li>
+            </ul>
+          </div>
+          <button class="btn-pill-light" style="width:100%; margin-top:28px;">Select Apex Vest</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       MARKETING & CAMPAIGN (Guideline 8)
+  ═══════════════════════════════════════════════ -->
+  <section style="padding:90px 0; background:#ffffff;">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:680px; margin:0 auto 50px;">
+        <span class="badge-pill">Global Launch Campaign</span>
+        <h2 class="font-editorial" style="font-size:clamp(30px, 4vw, 48px); color:var(--ink); margin-top:12px;">
+          #OwnThePitch · #OwnTheRecovery
+        </h2>
+        <p style="color:var(--ink-soft); font-size:15px; margin-top:8px;">
+          See how professional players and sports scientists describe the leap from single wearables to dual-vector intelligence.
+        </p>
+      </div>
+
+      <div class="bento-grid">
+        <div class="bento-card col-4" style="background:#f8f9fa;">
+          <p style="font-style:italic; font-size:15px; color:var(--ink); margin-bottom:16px;">
+            "In professional football, we've had GPS pods for years, but we had zero visibility into what players did between 11 PM and 7 AM. Ultrahuman closed that gap completely."
+          </p>
+          <div style="font-weight:600; font-size:13px;">— Head of Performance</div>
+          <div style="font-size:12px; color:var(--ink-muted);">European Championship Division Club</div>
+        </div>
+
+        <div class="bento-card col-4" style="background:#f8f9fa;">
+          <p style="font-style:italic; font-size:15px; color:var(--ink); margin-bottom:16px;">
+            "Running a 2:18 marathon requires managing cardiac drift down to the beat. Standard watches lag by 10 seconds during intervals. The Apex Vest gives me ECG truth on the track, and Ring Nova guides my taper."
+          </p>
+          <div style="font-weight:600; font-size:13px;">— Elite Marathoner & Coach</div>
+          <div style="font-size:12px; color:var(--ink-muted);">National Athletics Federation</div>
+        </div>
+
+        <div class="bento-card col-4" style="background:#f8f9fa;">
+          <p style="font-style:italic; font-size:15px; color:var(--ink); margin-bottom:16px;">
+            "Finally, a company that realized contact sports and knurled barbells destroy rings. Now I slip on the vest for the workout, and wear the ring the other 23 hours."
+          </p>
+          <div style="font-weight:600; font-size:13px;">— CrossFit Games Competitor</div>
+          <div style="font-size:12px; color:var(--ink-muted);">Strength & Conditioning Specialist</div>
+        </div>
+      </div>
+
+      <!-- Promotional Slogan Banner -->
+      <div style="margin-top:40px; background:#121417; color:#ffffff; border-radius:var(--radius-lg); padding:36px; text-align:center;">
+        <span class="badge-pill" style="background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2); color:#ffffff;">Promotional Slogan</span>
+        <h3 class="font-editorial" style="font-size:clamp(24px, 3.5vw, 38px); margin:12px 0 8px; font-weight:400;">
+          "Your watch is smart. Your body is wiser.<br/>Now your data is complete."
+        </h3>
+        <p style="color:#a6afbc; font-size:14px; max-width:600px; margin:0 auto 20px;">
+          Join 40,000+ athletes taking the 30-Day Dual-Vector Challenge. Zero risk with our 30-day money-back guarantee.
+        </p>
+        <a href="#pricing" class="btn-pill-light" style="background:#ffffff; color:#121417; border:none; height:42px;">Claim Launch Offer</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       COMPREHENSIVE USER MANUAL (Guideline 10)
+  ═══════════════════════════════════════════════ -->
+  <section id="manual" style="padding:90px 0; background:var(--bg-card); border-top:1px solid var(--border-subtle);">
+    <div class="container">
+      
+      <div style="text-align:center; max-width:680px; margin:0 auto 50px;">
+        <span class="badge-pill">Complete Documentation</span>
+        <h2 class="font-editorial" style="font-size:clamp(32px, 4.5vw, 50px); color:var(--ink); margin-top:12px; line-height:1.1;">
+          User Manual & Operating Guide
+        </h2>
+        <p style="color:var(--ink-soft); font-size:15px; margin-top:8px;">
+          Official reference manual for the Ultrahuman Dual Suite (Ring Nova + Apex Vest).
+        </p>
+      </div>
+
+      <div class="bento-card col-12" style="background:#ffffff; padding:40px; max-width:920px; margin:0 auto;">
+        
+        <!-- Accordion 1: Product Name & Intro -->
+        <div class="accordion-item open">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>1. Product Name & Introduction</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <p>
+              <strong>Product Name:</strong> Ultrahuman Dual Suite (comprising <em>Ultrahuman Ring Nova</em> and <em>Ultrahuman Apex Vest</em>).<br/>
+              <strong>Introduction:</strong> The Ultrahuman Dual Suite is a multi-modal biometric and athletic performance system. Ring Nova tracks baseline cellular recovery, continuous body temperature, and sleep cycles. Apex Vest captures high-velocity physical output (ECG heart rate, sprint speed, acceleration, and impact G-forces). Together, both devices stream data into the centralized Ultrahuman App via Bluetooth 5.3 Low Energy.
+            </p>
+          </div>
+        </div>
+
+        <!-- Accordion 2: Technical Specifications -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>2. Technical Specifications</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <table style="width:100%; border-collapse:collapse; font-size:13px; margin-top:8px;">
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0; color:var(--ink-muted);">Ring Material</td><td>Aerospace Grade-5 Titanium + Hypoallergenic Epoxy Resin interior</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0; color:var(--ink-muted);">Vest Material</td><td>82% Recycled Polyester, 18% Elastane, Antimicrobial compression weave</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0; color:var(--ink-muted);">Ring Sensors</td><td>Infrared & Green Photoplethysmography (PPG), Medical Skin Temp (0.01°C), 6-axis IMU</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0; color:var(--ink-muted);">Vest Sensors</td><td>Dry-electrode conductive ECG chest band (250Hz), 10Hz Multi-GNSS (GPS/GLONASS/Galileo), 9-axis IMU (up to 16G impact detection)</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0; color:var(--ink-muted);">Battery Life</td><td>Ring: 7 Days (22 mAh) · Vest Pod: 14 Hours continuous active match GPS</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0; color:var(--ink-muted);">Water Resistance</td><td>Ring: 100 meters (IP68) · Vest Pod: Sweat-proof & Splash-proof (IP67)</td></tr>
+              <tr><td style="padding:8px 0; color:var(--ink-muted);">Wireless</td><td>Bluetooth Low Energy 5.3 + ANT+ Broadcast Capability</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accordion 3: Parts & Components -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>3. Parts & Components Included</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <ul style="padding-left:20px; line-height:1.8;">
+              <li><strong>1x Ultrahuman Ring Nova:</strong> Chosen finish and size (US 6 to 13).</li>
+              <li><strong>1x Ultrahuman Apex Compression Vest:</strong> Selected garment size (S, M, L, XL, XXL).</li>
+              <li><strong>1x Apex GNSS Sensor Pod:</strong> Removable clip-in unit for spine pocket.</li>
+              <li><strong>1x Wireless Fast Charging Ring Dock:</strong> With braided USB-C cable.</li>
+              <li><strong>1x Magnetic Dual-Pin Pod Charger:</strong> For fast-charging the GPS Pod.</li>
+              <li><strong>1x Plastic Trial Sizing Kit (7 Rings):</strong> Delivered before final ring dispatch to guarantee exact fit.</li>
+              <li><strong>1x Quick-Start Field Guide & Warranty Card.</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Accordion 4: Step-by-Step Instructions -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>4. Step-by-Step Instructions (How to Use)</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <ol style="padding-left:20px; line-height:1.9;">
+              <li><strong>Download App:</strong> Install the <em>Ultrahuman</em> app from the Apple App Store or Google Play Store. Create your athlete account.</li>
+              <li><strong>Initial Charge:</strong> Place Ring Nova on its wireless dock. Plug the Apex Pod into its magnetic cable. Allow 60 minutes for 100% charge.</li>
+              <li><strong>Bluetooth Pairing:</strong> Open the app, tap <em>Add Device</em>, select <em>Dual Suite</em>, and hold both devices within 10 cm of your smartphone.</li>
+              <li><strong>Wearing Ring Nova:</strong> Slide onto the index, middle, or ring finger of your non-dominant hand. Ensure sensor bumps touch the palm side. Wear 24/7 (including sleep).</li>
+              <li><strong>Wearing Apex Vest:</strong> Put on the vest directly against your skin under your jersey or training top. Ensure the dry chest electrodes sit flat below the pectorals. Lightly dampen the electrodes with water if skin is dry before cold-weather training.</li>
+              <li><strong>Inserting Pod:</strong> Snap the Apex Pod into the pouch between your shoulder blades with the logo facing outward. Tap the pod twice to start Match Tracking (LED flashes green).</li>
+              <li><strong>Post-Match Sync:</strong> Upon completion, tap the pod twice to stop. Open the app to instantly download your high-speed match telemetry and view combined recovery insights.</li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- Accordion 5: Safety Precautions & Warnings -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>5. Safety Precautions & Warnings</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <div style="background:#fff5f5; border-left:4px solid #e53e3e; padding:12px 16px; border-radius:4px; margin-bottom:12px;">
+              <strong>WARNING:</strong> This device is designed for sports, fitness, and wellness optimization. It is NOT a diagnostic medical ECG device. Do not use for diagnosing heart murmurs or acute cardiac events.
+            </div>
+            <ul style="padding-left:20px; line-height:1.8;">
+              <li>Do not wear the metal Ring Nova while operating high-torque heavy industrial machinery or during heavy barbell lifts without grip chalk.</li>
+              <li>Remove the Apex Sensor Pod before washing the compression garment. Washing the pod in a washing machine will void the warranty.</li>
+              <li>If you experience redness or skin irritation under the chest electrodes, discontinue vest use and wash skin with mild soap.</li>
+              <li>Keep charging docks and USB cables away from water baths and open rain.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Accordion 6: Maintenance & Washing Instructions -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>6. Maintenance & Washing Instructions</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <p>
+              <strong>Apex Vest Garment:</strong> Always remove the sensor pod first. Machine wash cold (30°C / 85°F) on gentle cycle with mild detergent. Do NOT use fabric softeners or chlorine bleach. Air dry in shade — do NOT tumble dry or iron.<br/><br/>
+              <strong>Ring Nova:</strong> Clean once per week under warm running water using mild, fragrance-free soap. Dry thoroughly with a microfiber cloth. Ensure the interior resin sensor windows remain free from soap buildup.<br/><br/>
+              <strong>Sensor Pod:</strong> Wipe clean with an alcohol-free sanitizing wipe. Do not submerge pod in water.
+            </p>
+          </div>
+        </div>
+
+        <!-- Accordion 7: Troubleshooting Guide -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>7. Troubleshooting Guide</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <table style="width:100%; border-collapse:collapse; font-size:13px;">
+              <tr style="border-bottom:1px solid var(--border-subtle);"><th style="text-align:left; padding:6px 0;">Issue</th><th style="text-align:left; padding:6px 0;">Probable Cause</th><th style="text-align:left; padding:6px 0;">Solution</th></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0;">Pod not recording</td><td>Pod not clicked into position</td><td>Ensure magnetic clicks seat pod firmly; double-tap firmly until green LED flashes.</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0;">Erratic ECG heart rate</td><td>Dry skin or loose vest fit</td><td>Moisten chest electrodes with water or conductive gel; ensure snug fit against skin.</td></tr>
+              <tr style="border-bottom:1px solid var(--border-subtle);"><td style="padding:8px 0;">Ring fails to sync</td><td>Bluetooth cache locked</td><td>Toggle phone Bluetooth OFF for 5 seconds and ON; place ring on dock for 3 seconds to reboot.</td></tr>
+              <tr><td style="padding:8px 0;">No GPS satellite lock</td><td>Indoor testing</td><td>Move to open pitch/field with clear line of sight to the sky. Initial satellite lock takes ~30 seconds.</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Accordion 8: Contact & Warranty Information -->
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>8. Contact & Warranty Information</span>
+            <span class="accordion-icon">+</span>
+          </div>
+          <div class="accordion-content">
+            <p>
+              <strong>Warranty:</strong> Every Ultrahuman Dual Suite comes with a 1-Year Comprehensive Manufacturer Warranty covering material defects and sensor calibration errors.<br/><br/>
+              <strong>Support Email:</strong> <a href="mailto:support@ultrahuman.com" style="color:var(--accent-orange);">support@ultrahuman.com</a><br/>
+              <strong>Global Hotline:</strong> +1 (800) 208-ULTRA / +91 1800-208-3456<br/>
+              <strong>Official Portal:</strong> <a href="https://ultrahuman.com" target="_blank" style="color:var(--accent-orange);">ultrahuman.com</a><br/>
+              <strong>Headquarters:</strong> Ultrahuman Healthcare Pvt Ltd, Bengaluru, India & New York, USA.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER (Octolane Signature)
+  ═══════════════════════════════════════════════ -->
+  <footer style="background:#ffffff; border-top:1px solid var(--border-subtle); padding:60px 0 40px;">
+    <div class="container">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; margin-bottom:40px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+            <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="44" stroke="#121417" stroke-width="8"/>
+              <circle cx="50" cy="50" r="28" stroke="#f76b15" stroke-width="6"/>
+            </svg>
+            <span style="font-weight:700; font-size:15px; letter-spacing:0.04em;">ULTRAHUMAN</span>
+          </div>
+          <p style="color:var(--ink-muted); font-size:13px; max-width:320px;">
+            Dual-Vector physical intelligence for high-velocity athletics and deep restorative recovery.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:40px; font-size:13px;">
+          <div>
+            <div style="font-weight:600; margin-bottom:10px;">Products</div>
+            <div style="display:flex; flex-direction:column; gap:6px; color:var(--ink-muted);">
+              <a href="#hardware" style="color:inherit; text-decoration:none;">Ring Nova</a>
+              <a href="#hardware" style="color:inherit; text-decoration:none;">Apex Vest</a>
+              <a href="#pricing" style="color:inherit; text-decoration:none;">Pro Dual Suite</a>
+              <a href="#telemetry" style="color:inherit; text-decoration:none;">Ultrahuman App</a>
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:600; margin-bottom:10px;">Compliance</div>
+            <div style="display:flex; flex-direction:column; gap:6px; color:var(--ink-muted);">
+              <span>ISO 27001 Certified</span>
+              <span>CE & FCC Marked</span>
+              <span>FIFA Rule 4 Compliant</span>
+              <span>GDPR / HIPAA Encrypted</span>
+            </div>
+          </div>
+          <div>
+            <div style="font-weight:600; margin-bottom:10px;">Resources</div>
+            <div style="display:flex; flex-direction:column; gap:6px; color:var(--ink-muted);">
+              <a href="#manifesto" style="color:inherit; text-decoration:none;">Manifesto</a>
+              <a href="#manual" style="color:inherit; text-decoration:none;">User Manual</a>
+              <a href="#pricing" style="color:inherit; text-decoration:none;">Warranty Policy</a>
+              <a href="mailto:support@ultrahuman.com" style="color:inherit; text-decoration:none;">Contact Support</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border-subtle); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:12px; color:var(--ink-muted);">
+        <div>© 2026 Ultrahuman Inc. All rights reserved. Dual-Vector Intelligence is a trademark of Ultrahuman.</div>
+        <div style="display:flex; gap:16px;">
+          <a href="#" style="color:inherit; text-decoration:none;">Privacy Policy</a>
+          <a href="#" style="color:inherit; text-decoration:none;">Terms of Service</a>
+          <a href="#" style="color:inherit; text-decoration:none;">GitHub Deployment</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════
+       INTERACTIVE TELEMETRY SCRIPT (Chart.js)
+  ═══════════════════════════════════════════════ -->
+  <script>
+    // Accordion Toggle function
+    function toggleAccordion(header) {
+      const item = header.parentElement;
+      item.classList.toggle('open');
+    }
+
+    // Chart.js Live Telemetry Engine
+    let telemetryChartInstance = null;
+
+    const telemetryModes = {
+      match: {
+        labels: ['0m', '10m', '20m', '30m', '45m (HT)', '55m', '65m', '75m', '85m', '90m (FT)'],
+        datasets: [
+          {
+            label: 'Apex Vest ECG Heart Rate (BPM)',
+            data: [92, 142, 168, 178, 118, 155, 172, 186, 174, 130],
+            borderColor: '#f76b15',
+            backgroundColor: 'rgba(247, 107, 21, 0.08)',
+            borderWidth: 2.5,
+            fill: true,
+            tension: 0.35
+          },
+          {
+            label: 'Sprint Speed Peaks (km/h x 5)',
+            data: [60, 110, 140, 171, 20, 130, 165, 160, 140, 40],
+            borderColor: '#00bfa5',
+            borderWidth: 1.5,
+            borderDash: [4, 4],
+            fill: false,
+            tension: 0.2
+          }
+        ],
+        stat1: ['Peak Velocity', '34.2 km/h'],
+        stat2: ['ECG Heart Rate Peak', '186 BPM'],
+        stat3: ['Player Workload', '842 AU'],
+        stat4: ['System State', '● LIVE STREAMING'],
+        stat4Color: '#00bfa5',
+        desc: 'Displaying 90-minute competitive football match telemetry recorded by the <strong>Apex Vest Pod</strong> at 250Hz ECG & 10Hz GNSS.',
+        badge: 'Sensor Pod Active'
+      },
+      recovery: {
+        labels: ['11 PM', '12 AM', '1 AM', '2 AM', '3 AM', '4 AM', '5 AM', '6 AM', '7 AM'],
+        datasets: [
+          {
+            label: 'Ring Nova Nocturnal HRV (ms)',
+            data: [58, 64, 76, 88, 94, 86, 82, 79, 74],
+            borderColor: '#2563eb',
+            backgroundColor: 'rgba(37, 99, 235, 0.08)',
+            borderWidth: 2.5,
+            fill: true,
+            tension: 0.4
+          },
+          {
+            label: 'Skin Temp Deviation (°C x 100)',
+            data: [-15, -20, -22, -28, -25, -18, -10, -5, 0],
+            borderColor: '#00bfa5',
+            borderWidth: 1.5,
+            borderDash: [3, 3],
+            fill: false,
+            tension: 0.3
+          }
+        ],
+        stat1: ['Resting HRV', '82 ms'],
+        stat2: ['Deep + REM Sleep', '4h 12m'],
+        stat3: ['Temp Drop', '-0.28°C'],
+        stat4: ['Circadian Align', '96% OPTIMAL'],
+        stat4Color: '#2563eb',
+        desc: 'Displaying overnight recovery trajectory measured by <strong>Ring Nova</strong>. High parasympathetic tone and deep restoration achieved.',
+        badge: 'Ring Nova Active'
+      },
+      unified: {
+        labels: ['Mon (Match)', 'Tue (Rest)', 'Wed (Drills)', 'Thu (Gym)', 'Fri (Taper)', 'Sat (Match)', 'Sun (Recovery)'],
+        datasets: [
+          {
+            label: 'Combined Readiness Index (0–100)',
+            data: [88, 64, 78, 82, 91, 95, 71],
+            borderColor: '#f76b15',
+            backgroundColor: 'rgba(247, 107, 21, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.35
+          }
+        ],
+        stat1: ['Weekly Readiness', '82.4 / 100'],
+        stat2: ['Load Strain Ratio', '1.14 (Safe)'],
+        stat3: ['Recovery Efficiency', '92%'],
+        stat4: ['Injury Risk', 'MINIMAL'],
+        stat4Color: '#00bfa5',
+        desc: 'The <strong>Dual-Vector Neural Engine</strong> combines match strain from the Apex Vest with sleep restorative index from Ring Nova.',
+        badge: 'Unified Engine Synced'
+      }
+    };
+
+    function initTelemetryChart(mode = 'match') {
+      const ctx = document.getElementById('telemetryChart').getContext('2d');
+      const config = telemetryModes[mode];
+
+      if (telemetryChartInstance) {
+        telemetryChartInstance.destroy();
+      }
+
+      telemetryChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: config.labels,
+          datasets: config.datasets
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animation: { duration: 600 },
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: { font: { family: 'Inter', size: 12 }, boxWidth: 14 }
+            },
+            tooltip: {
+              backgroundColor: '#121417',
+              titleFont: { family: 'Inter', weight: 'bold' },
+              bodyFont: { family: 'Space Mono' }
+            }
+          },
+          scales: {
+            x: {
+              grid: { color: 'rgba(0,0,0,0.04)' },
+              ticks: { font: { family: 'Space Mono', size: 11 }, color: '#798291' }
+            },
+            y: {
+              grid: { color: 'rgba(0,0,0,0.04)' },
+              ticks: { font: { family: 'Space Mono', size: 11 }, color: '#798291' }
+            }
+          }
+        }
+      });
+
+      // Update stat cards
+      document.getElementById('stat-1-label').textContent = config.stat1[0];
+      document.getElementById('stat-1-val').textContent = config.stat1[1];
+      document.getElementById('stat-2-label').textContent = config.stat2[0];
+      document.getElementById('stat-2-val').textContent = config.stat2[1];
+      document.getElementById('stat-3-label').textContent = config.stat3[0];
+      document.getElementById('stat-3-val').textContent = config.stat3[1];
+      document.getElementById('stat-4-label').textContent = config.stat4[0];
+      document.getElementById('stat-4-val').textContent = config.stat4[1];
+      document.getElementById('stat-4-val').style.color = config.stat4Color;
+      document.getElementById('telemetry-desc').innerHTML = config.desc;
+      document.getElementById('telemetry-badge').textContent = config.badge;
+    }
+
+    function switchTelemetry(mode) {
+      document.getElementById('tab-match').classList.remove('active');
+      document.getElementById('tab-recovery').classList.remove('active');
+      document.getElementById('tab-unified').classList.remove('active');
+      document.getElementById('tab-' + mode).classList.add('active');
+      initTelemetryChart(mode);
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      initTelemetryChart('match');
+    });
+  </script>
+</body>
+</html>
